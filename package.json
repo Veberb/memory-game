@@ -1,0 +1,22 @@
+{
+  "name": "memory-game",
+  "version": "1.0.0",
+  "description": "Tecnical test to fullstack developer @Lepaya",
+  "main": "index.js",
+  "repository": "git@github.com:Veberb/memory-game.git",
+  "author": "Lucas Veber <lucasveberdebrida@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "start:web": "yarn workspace @memory-game/web start",
+    "start:server": "yarn workspace @memory-game/server start"
+  },
+  "devDependencies": {
+    "@memory-game/eslint-config": "*"
+  }
+}
