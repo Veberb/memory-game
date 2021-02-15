@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
-import { Flex, Box, Button, Stack, Text, Image } from '@chakra-ui/react'
-import logo from '../../assets/logo.svg'
+import { Box, Text, Image } from '@chakra-ui/react'
 import thinking from '../../assets/thinking.jpg'
 
 export const FlipCard = ({ gameIsEnded, flipped = true, value }) => {
   const [isFlipped, setIsFlipped] = useState(flipped)
 
-  console.log('flip', gameIsEnded)
   useEffect(() => {
     setIsFlipped(flipped)
   }, [flipped])
@@ -21,7 +19,7 @@ export const FlipCard = ({ gameIsEnded, flipped = true, value }) => {
         borderRadius="lg"
         overflow="hidden"
         onClick={() => {
-          !gameIsEnded && setIsFlipped(!isFlipped)
+          isFlipped && !gameIsEnded && setIsFlipped(!isFlipped)
         }}
       >
         <Image boxSize="200px" src={thinking} />
@@ -35,7 +33,7 @@ export const FlipCard = ({ gameIsEnded, flipped = true, value }) => {
         overflow="hidden"
         boxSize="200px"
         onClick={() => {
-          !gameIsEnded && setIsFlipped(!isFlipped)
+          isFlipped && !gameIsEnded && setIsFlipped(!isFlipped)
         }}
       >
         <Text fontSize="5xl">{value}</Text>

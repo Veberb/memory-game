@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Flex,
-  Button,
-  Box,
-  HStack,
-  Stack,
-  Text,
-  useToast
-} from '@chakra-ui/react'
+import { Flex, Button, Box, HStack, Stack, Text } from '@chakra-ui/react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { GET_RANDOM_NUMBERS, api } from '../../axios'
@@ -38,6 +30,7 @@ export const Game = () => {
   }
 
   const checkIfIsCorrectOrder = () => {
+    if (!startGame) return
     const samePosition = choosedCards.length - 1
     const isInOrder = choosedCards[samePosition] === cardsSorted[samePosition]
     if (!isInOrder) {
@@ -45,7 +38,7 @@ export const Game = () => {
       setGameIsEnded(true)
     }
 
-    if (startGame && choosedCards.length === cardsSorted.length) {
+    if (!gameIsEnded && choosedCards.length === cardsSorted.length) {
       setGameIsEnded(true)
       showWinner()
     }
@@ -65,7 +58,6 @@ export const Game = () => {
         <Text fontSize="4xl">
           You have to memorize cards in ascending order of the numbers{' '}
         </Text>
-        <Text fontSize="4xl">{choosedCards}</Text>
         {/* Funcao para pegar novos numeros */}
         <Button
           colorScheme="teal"
@@ -73,6 +65,13 @@ export const Game = () => {
           onClick={() => setStartGame(!startGame)}
         >
           {!startGame ? 'Start game' : 'Restart Game'}
+        </Button>
+        <Button
+          colorScheme="teal"
+          mr="4"
+          onClick={() => setStartGame(!startGame)}
+        >
+          Reveal
         </Button>
         <HStack
           direction="row"
@@ -84,6 +83,7 @@ export const Game = () => {
           {cards.map((ammount, index) => (
             <Box
               key={index}
+              margin={'20px 20px 20px 20px'}
               onClick={evt => {
                 chooseCards(evt, ammount)
               }}
