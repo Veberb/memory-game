@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
 import { Box, Text, Image } from '@chakra-ui/react'
-import thinking from '../../assets/thinking.jpg'
+import lepaya from '../../assets/lepaya.png'
 
 export const FlipCard = ({ gameIsEnded, flipped = true, value }) => {
   const [isFlipped, setIsFlipped] = useState(flipped)
@@ -22,7 +22,7 @@ export const FlipCard = ({ gameIsEnded, flipped = true, value }) => {
           isFlipped && !gameIsEnded && setIsFlipped(!isFlipped)
         }}
       >
-        <Image boxSize="200px" src={thinking} />
+        <Image boxSize="200px" src={lepaya} />
       </Box>
       <Box
         as="button"
