@@ -3,7 +3,7 @@
 - ## Description
 
   - This is a memory game requested as technical assignment.
-  - I choose the memory game because description was more complete than service provider app and i'd be more funny to work with.
+  - I choose the memory game because description was more complete than service provider app and it'd be more funny to work with.
 
 - ## Stack
 
@@ -12,6 +12,7 @@
   - Express
   - Monorepo
   - Docker
+  - Chackra - UI
 
 - ## Stack Description
 
@@ -30,7 +31,7 @@
   - Backend uses port 4000.
 
 * ## Future Features:
-
+  - Config port's in project
   - Save user that is playing.
   - Track user score while playing.
   - Timer to show a time record's memory game solving.
