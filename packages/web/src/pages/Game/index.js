@@ -46,6 +46,7 @@ export const Game = () => {
     if (!isInOrder) {
       showLose()
       setGameIsEnded(true)
+      return
     }
 
     if (!gameIsEnded && choosedCards.length === cardsSorted.length) {
