@@ -34,4 +34,4 @@
   - Config port's in project
   - Save user that is playing.
   - Track user score while playing.
-  - Timer to show a time record's memory game solving.
+  - Timer to show list of players record's.
