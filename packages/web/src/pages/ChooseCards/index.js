@@ -17,7 +17,7 @@ export const ChooseCards = () => {
               colorScheme="teal"
               mr="4"
               onClick={() => {
-                history.push(`/game/${ammount}`)
+                history.push(`/game`, { params: ammount })
               }}
             >
               {ammount} card's
