@@ -16,7 +16,6 @@ export const Game = () => {
   const [cardsSorted, setCardsSorted] = useState([])
   const [choosedCards, setChoosedCards] = useState([])
   const [startGame, setStartGame] = useState(false)
-
   const [gameIsEnded, setGameIsEnded] = useState(false)
 
   const getRandomNumbers = async () => {
@@ -43,7 +42,12 @@ export const Game = () => {
       showWinner()
     }
   }
-  console.log('lucas', gameIsEnded)
+  const restartGame = () => {
+    getRandomNumbers()
+    setStartGame(false)
+    setGameIsEnded(false)
+    setChoosedCards([])
+  }
   useEffect(() => {
     getRandomNumbers()
   }, [])
@@ -56,23 +60,47 @@ export const Game = () => {
     <Flex justify="center" alignItems="center">
       <Stack spacing={100} alignItems="center">
         <Text fontSize="4xl">
-          You have to memorize cards in ascending order of the numbers{' '}
+          You have to memorize cards in ascending order of the numbers.
         </Text>
-        {/* Funcao para pegar novos numeros */}
-        <Button
-          colorScheme="teal"
-          mr="4"
-          onClick={() => setStartGame(!startGame)}
+
+        <HStack
+          direction="row"
+          display="flex"
+          justifyContent="center"
+          wrap="wrap"
+          shouldWrapChildren={true}
         >
-          {!startGame ? 'Start game' : 'Restart Game'}
-        </Button>
-        <Button
-          colorScheme="teal"
-          mr="4"
-          onClick={() => setStartGame(!startGame)}
-        >
-          Reveal
-        </Button>
+          <Button
+            colorScheme="teal"
+            mr="4"
+            onClick={() => history.push('/choose')}
+          >
+            Choose ammount of card's
+          </Button>
+          {!startGame && !gameIsEnded && (
+            <Button
+              colorScheme="teal"
+              mr="4"
+              onClick={() => setStartGame(!startGame)}
+            >
+              Start game
+            </Button>
+          )}
+          {(gameIsEnded || startGame) && (
+            <Button colorScheme="teal" mr="4" onClick={() => restartGame()}>
+              Restart Game
+            </Button>
+          )}
+          {startGame && (
+            <Button
+              colorScheme="teal"
+              mr="4"
+              onClick={() => setStartGame(!startGame)}
+            >
+              Reveal
+            </Button>
+          )}
+        </HStack>
         <HStack
           direction="row"
           display="flex"
