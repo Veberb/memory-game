@@ -50,7 +50,7 @@ export const Game = () => {
       showWinner()
     }
   }
-
+  console.log('lucas', gameIsEnded)
   useEffect(() => {
     getRandomNumbers()
   }, [])
@@ -66,14 +66,21 @@ export const Game = () => {
           You have to memorize cards in ascending order of the numbers{' '}
         </Text>
         <Text fontSize="4xl">{choosedCards}</Text>
+        {/* Funcao para pegar novos numeros */}
         <Button
           colorScheme="teal"
           mr="4"
           onClick={() => setStartGame(!startGame)}
         >
-          Start game
+          {!startGame ? 'Start game' : 'Restart Game'}
         </Button>
-        <HStack direction="row" spacing={2}>
+        <HStack
+          direction="row"
+          display="flex"
+          justifyContent="center"
+          wrap="wrap"
+          shouldWrapChildren={true}
+        >
           {cards.map((ammount, index) => (
             <Box
               key={index}
