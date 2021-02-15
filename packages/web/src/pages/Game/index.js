@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, Button, Box, HStack, Stack, Text } from '@chakra-ui/react'
+import {
+  Flex,
+  Button,
+  Box,
+  HStack,
+  Spinner,
+  Stack,
+  Text
+} from '@chakra-ui/react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { GET_RANDOM_NUMBERS, api } from '../../axios'
@@ -17,11 +25,14 @@ export const Game = () => {
   const [choosedCards, setChoosedCards] = useState([])
   const [startGame, setStartGame] = useState(false)
   const [gameIsEnded, setGameIsEnded] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const getRandomNumbers = async () => {
+    setLoading(true)
     const { data } = await api.get(GET_RANDOM_NUMBERS(length))
     setCards([...data])
     setCardsSorted([...data].sort((a, b) => a - b))
+    setLoading(false)
   }
 
   const chooseCards = (event, ammount) => {
@@ -101,29 +112,41 @@ export const Game = () => {
             </Button>
           )}
         </HStack>
-        <HStack
-          direction="row"
-          display="flex"
-          justifyContent="center"
-          wrap="wrap"
-          shouldWrapChildren={true}
-        >
-          {cards.map((ammount, index) => (
-            <Box
-              key={index}
-              margin={'20px 20px 20px 20px'}
-              onClick={evt => {
-                chooseCards(evt, ammount)
-              }}
-            >
-              <FlipCard
-                gameIsEnded={gameIsEnded}
-                flipped={startGame}
-                value={ammount}
-              />
-            </Box>
-          ))}
-        </HStack>
+
+        {loading && (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        )}
+        {!loading && (
+          <HStack
+            direction="row"
+            display="flex"
+            justifyContent="center"
+            wrap="wrap"
+            shouldWrapChildren={true}
+          >
+            {cards.map((ammount, index) => (
+              <Box
+                key={index}
+                margin={'20px 20px 20px 20px'}
+                onClick={evt => {
+                  chooseCards(evt, ammount)
+                }}
+              >
+                <FlipCard
+                  gameIsEnded={gameIsEnded}
+                  flipped={startGame}
+                  value={ammount}
+                />
+              </Box>
+            ))}
+          </HStack>
+        )}
       </Stack>
     </Flex>
   )
