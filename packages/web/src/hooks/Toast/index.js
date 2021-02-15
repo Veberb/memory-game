@@ -5,9 +5,9 @@ const ShowGameStatus = () => {
   const showLose = () => {
     toast({
       title: 'You Lose.',
-      description: 'Sorry but you dont remember corretly =( .',
+      description: 'Sorry but you didnt remember corretly =( .',
       status: 'error',
-      duration: 9000,
+      duration: 4000,
       isClosable: true
     })
   }
@@ -17,7 +17,7 @@ const ShowGameStatus = () => {
       title: 'YOU WIN.',
       description: 'Excellent memory! You remember all numbers.',
       status: 'success',
-      duration: 9000,
+      duration: 4000,
       isClosable: true
     })
   }
